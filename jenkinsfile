@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+	stages {
+	    stage('compile') {
+		    steps {
+			        echo "compiled Successfully";
+			}
+		}
+		
+		stage('JUnit') {
+		    steps {
+			        echo "JUnit passed Successfully";
+			}
+		}
+		
+		stage('Quality-Gate') {
+		    steps {
+			        echo "Sonarqube Quality gate passed Successfully";
+			}
+		}
+		
+		stage('Deploy') {
+		    steps {
+			        echo "pass";
+			}
+		}
+		
+	}
+	post {
+        always {
+		    echo "This will always run";
+		}
+		success {
+		    echo "This will ru if only successful";
+		}
+		failure {
+		    echo "This will run only if failed";
+		}
+		unstable {
+		    echo "This will run only if it was marked as unstable";
+		}
+		changed {
+		    echo "This will run only if the piepline state was changed";
+		}
+	}
+}	
+		
+		
